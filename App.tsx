@@ -6,12 +6,13 @@ import { Dashboard } from './components/Dashboard';
 import { AccountForm } from './components/AccountForm';
 import { TransactionForm } from './components/TransactionForm';
 import { TransactionList } from './components/TransactionList';
+import { AccountList } from './components/AccountList';
 
 // Mock Initial Data
 const INITIAL_ACCOUNTS: Account[] = [
-  { id: '1', name: '錢包現金', type: AccountType.CASH, balance: 5000, initialBalance: 5000 },
-  { id: '2', name: '薪轉戶', type: AccountType.BANK, balance: 120000, initialBalance: 80000 },
-  { id: '3', name: '主要信用卡', type: AccountType.CREDIT, balance: -5000, initialBalance: 0, billingDate: 20, dueDate: 5 },
+  { id: '1', name: '現金', type: AccountType.CASH, balance: 5000, initialBalance: 5000, note: '錢包' },
+  { id: '2', name: '臺灣銀行', type: AccountType.BANK, balance: 120000, initialBalance: 80000, note: '定存' },
+  { id: '3', name: '現金回饋信用卡', type: AccountType.CREDIT, balance: -5000, initialBalance: 0, billingDate: 20, dueDate: 5, note: '回饋較高' },
 ];
 
 const INITIAL_TRANSACTIONS: Transaction[] = [
@@ -66,7 +67,7 @@ const App: React.FC = () => {
     const id = Math.random().toString(36).substr(2, 9);
     setAccounts([...accounts, { ...newAccount, id }]);
     alert('帳戶已建立！');
-    setView(View.DASHBOARD);
+    setView(View.ACCOUNT_LIST); // Redirect to list instead of dashboard
   };
 
   const handleAddTransaction = (newTransaction: Omit<Transaction, 'id'>) => {
@@ -92,7 +93,7 @@ const App: React.FC = () => {
 
     setAccounts(updatedAccounts);
     alert('交易已儲存！');
-    setView(View.DASHBOARD);
+    setView(View.TRANSACTION_LIST); // Redirect to list
   };
 
   if (!isLoggedIn) {
@@ -142,6 +143,10 @@ const App: React.FC = () => {
           <TransactionForm mode="TRANSFER" accounts={accounts} onSave={handleAddTransaction} />
         )}
         
+        {view === View.ACCOUNT_LIST && (
+          <AccountList accounts={accounts} />
+        )}
+
         {view === View.CREATE_ACCOUNT && (
           <AccountForm onSave={handleAddAccount} />
         )}

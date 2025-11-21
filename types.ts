@@ -2,6 +2,7 @@ export enum View {
   LOGIN = 'LOGIN',
   DASHBOARD = 'DASHBOARD',
   TRANSACTION_LIST = 'TRANSACTION_LIST',
+  ACCOUNT_LIST = 'ACCOUNT_LIST',
   ADD_INCOME = 'ADD_INCOME',
   ADD_EXPENSE = 'ADD_EXPENSE',
   ADD_TRANSFER = 'ADD_TRANSFER',
@@ -22,6 +23,7 @@ export interface Account {
   initialBalance: number;
   billingDate?: number; // Day of month
   dueDate?: number; // Day of month
+  note?: string;
 }
 
 export enum Frequency {

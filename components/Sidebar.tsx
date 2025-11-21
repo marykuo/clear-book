@@ -8,7 +8,8 @@ import {
   LogOut,
   Moon,
   Sun,
-  List
+  List,
+  CreditCard
 } from 'lucide-react';
 import { View } from '../types';
 
@@ -31,6 +32,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
   const navItems = [
     { view: View.DASHBOARD, icon: LayoutDashboard, label: '總覽儀表板' },
     { view: View.TRANSACTION_LIST, icon: List, label: '交易明細' },
+    { view: View.ACCOUNT_LIST, icon: CreditCard, label: '帳戶列表' },
     { view: View.ADD_INCOME, icon: TrendingUp, label: '新增收入' },
     { view: View.ADD_EXPENSE, icon: TrendingDown, label: '新增支出' },
     { view: View.ADD_TRANSFER, icon: ArrowRightLeft, label: '新增轉帳' },

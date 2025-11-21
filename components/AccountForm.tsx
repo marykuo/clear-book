@@ -12,6 +12,7 @@ export const AccountForm: React.FC<AccountFormProps> = ({ onSave }) => {
   const [initialBalance, setInitialBalance] = useState<string>('');
   const [billingDate, setBillingDate] = useState<string>('');
   const [dueDate, setDueDate] = useState<string>('');
+  const [note, setNote] = useState('');
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -22,6 +23,7 @@ export const AccountForm: React.FC<AccountFormProps> = ({ onSave }) => {
       initialBalance: Number(initialBalance) || 0,
       billingDate: billingDate ? Number(billingDate) : undefined,
       dueDate: dueDate ? Number(dueDate) : undefined,
+      note: note,
     });
     // Reset
     setName('');
@@ -29,6 +31,7 @@ export const AccountForm: React.FC<AccountFormProps> = ({ onSave }) => {
     setInitialBalance('');
     setBillingDate('');
     setDueDate('');
+    setNote('');
   };
 
   return (
@@ -115,6 +118,18 @@ export const AccountForm: React.FC<AccountFormProps> = ({ onSave }) => {
               </div>
             </>
           )}
+          
+          {/* Note */}
+          <div className="col-span-2">
+            <label className="block mb-2 text-sm font-medium text-slate-900 dark:text-white">備註</label>
+            <textarea
+              rows={3}
+              value={note}
+              onChange={(e) => setNote(e.target.value)}
+              className="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-slate-800 dark:border-slate-700 dark:placeholder-slate-400 dark:text-white"
+              placeholder="關於這個帳戶的備註..."
+            />
+          </div>
         </div>
 
         <button
